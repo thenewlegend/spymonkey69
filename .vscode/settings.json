@@ -1,0 +1,40 @@
+{
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		".eslintignore": true,
+		".eslintrc.cjs": true,
+		".npmrc": true,
+		".prettierignore": true,
+		".prettierrc": true,
+		"package-lock.json": true,
+		"package.json": true,
+		"README.md": true,
+		"tsconfig.json": true,
+		"vite.config.ts": true,
+		".svelte-kit": true,
+		".gitignore": true,
+		".vscode": true,
+		"node_modules": true
+	},
+	"hide-files.files": [
+		".eslintignore",
+		".eslintrc.cjs",
+		".npmrc",
+		".prettierignore",
+		".prettierrc",
+		"package-lock.json",
+		"package.json",
+		"README.md",
+		"tsconfig.json",
+		"vite.config.ts",
+		".svelte-kit",
+		".gitignore",
+		".vscode",
+		"node_modules"
+	]
+}
