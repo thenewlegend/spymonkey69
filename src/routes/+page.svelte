@@ -1,13 +1,13 @@
 <script>
-	import Bottom from './Bottom.svelte';
-	import Mid from './Mid.svelte';
 	import Top from './Top.svelte';
+	import Kd from './Kd.svelte';
+	import Inventory from './Inventory.svelte';
 </script>
 
 <div class="container">
 	<Top />
-	<Mid />
-	<Bottom />
+	<Kd />
+	<Inventory />
 </div>
 
 <style>
