@@ -13,20 +13,20 @@ export const losses1 = writable(0);
 export const total_fights1 = writable(0);
 export const losing_streak1 = writable(0);
 export const xp1 = writable(0);
-export const inventory1 = writable(null);
+export const inventory1 = writable([]);
+export const equipment1 = writable([]);
 
-export const banana2 = writable('0.0000 BANANA');
-export const stash2 = writable('0.0000 BANANA');
-export const status2 = writable('🙊');
-export const fight2 = writable('💤');
-export const monkey2 = writable('opMonke');
-export const banana_peels2 = writable('0.0000 BANANA');
-export const wins2 = writable(0);
-export const losses2 = writable(0);
-export const total_fights2 = writable(0);
-export const losing_streak2 = writable(0);
-export const xp2 = writable(0);
-export const inventory2 = writable(null);
+export async function fetchEquipmentAssets(accountName) {
+    const response = await client.v1.chain.get_table_rows({
+        code: CONTRACT_NAME,
+        scope: accountName,
+        table: 'equipment',
+        limit: 100
+    });
+
+    return response.rows;
+};
+
 
 export async function fetchMonkeyDetails(accountName) {
 	const response = await client.v1.chain.get_table_rows({
