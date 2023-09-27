@@ -6,15 +6,27 @@ export const banana1 = writable('0.0000 BANANA');
 export const stash1 = writable('0.0000 BANANA');
 export const status1 = writable('🙊');
 export const fight1 = writable('💤');
-export const monkey1 = writable('myMonke');
+export const monkey1 = writable('-----');
 export const banana_peels1 = writable('0.0000 BANANA');
 export const wins1 = writable(0);
 export const losses1 = writable(0);
 export const total_fights1 = writable(0);
 export const losing_streak1 = writable(0);
 export const xp1 = writable(0);
+
 export const inventory1 = writable([]);
 export const equipment1 = writable([]);
+export const equipped1 = writable([]);
+
+export const stick_visible = writable('');
+export const bat_visible = writable('');
+export const nails_visible = writable('');
+export const katana_visible = writable('');
+export const shiv_visible = writable('');
+export const axe_visible = writable('');
+
+
+
 
 export async function fetchEquipmentAssets(accountName) {
     const response = await client.v1.chain.get_table_rows({

@@ -18,7 +18,11 @@
 		total_fights1,
 		losing_streak1,
 		xp1,
-		inventory1
+		inventory1,
+		equipment1,
+		equipped1,
+		fetchEquipmentAssets
+
 	} from '$lib/getstats';
 
 	// For store 1
@@ -36,6 +40,11 @@
 		xp11;
 
 	// Assign values from stores to the variables
+
+	monkey1.subscribe((value) => {
+		monkey11 = value;
+	});
+
 	banana1.subscribe((value) => {
 		banana11 = value;
 	});
@@ -116,6 +125,7 @@
 				total_fights1.set(monke1.total_fights);
 				losing_streak1.set(monke1.losing_streak);
 				xp1.set(monke1.xp);
+				equipped1.set(monke1.equip_used)
 
 				if (monke1.losing_streak !== 0) {
 					fight1.set('NOT FIGHTING');
@@ -125,7 +135,9 @@
 
 				//Set Inventory to Store
 				const inventoryItem1 = await fetchInventoryAssets(myMonkeFormatted);
+				const equipmentItem1 = await fetchEquipmentAssets(myMonkeFormatted);
 				inventory1.set(inventoryItem1);
+				equipment1.set(equipmentItem1);
 				localStorage.setItem('myMonke', myMonkeFormatted);
 
 				FetchedNotify.click();
@@ -152,6 +164,7 @@
 
 	function clearData() {
 		try {
+			monkey1.set('-----');
 			fight1.set('💤');
 			banana1.set('0.0000 BANANA');
 			stash1.set('0.0000 BANANA');
@@ -161,16 +174,19 @@
 			total_fights1.set(0);
 			losing_streak1.set(0);
 			xp1.set(0);
+			inventory1.set([]);
+			equipment1.set([]);
+			equipped1.set([]);
+
 		} catch (error) {
-			console.error('An error occurred while clearing data:', error.message);
+			console.error('An error occurred while clearing data: ', error.message);
 		}
 	}
 
-	function clearAllData() {
-		clearData();
-		monkeName1 = '';
-		console.log('Cleared All Data');
-	}
+	function selectAllText() {
+    const input = document.getElementById('myMonke');
+    input.select();
+  }
 </script>
 
 <div class="top">
@@ -179,17 +195,17 @@
 		<div class="input-container">
 			<div class="input">
 				<label for="myMonke" class="input-label">Monke</label>
-				<input id="myMonke" class="input-field" type="text" bind:value={monkeName1} required /><br />
+				<input id="myMonke" on:focus={selectAllText} class="input-field" type="text" bind:value={monkeName1} required /><br />
 			</div>
 			
 			<div class="buttons top-b">
 				<button on:click={displayData}>SPY</button>
-				<button on:click={clearAllData}>CLEAR</button>
 			</div>
 
 		</div>
 
 		<div class="span-container" style="overflow-wrap: break-word;">
+			<span>{monkey11}</span><br />
             <span>{status11}</span><br />
 			<span>{banana11} in game</span><br />
 			<span>{stash11} in account</span><br />
@@ -200,10 +216,6 @@
 
 	</div>
 </div>
-
-	
-
-
 
 <div class="notifications">
 	<button
@@ -288,10 +300,9 @@
 	.top {
 		display: flex;
 		justify-content: center;
-		align-items: flex-start;
+		align-items: center;
 		width: 80%;
 		margin-top: 20px;
-		flex-wrap: wrap; /* Allow items to wrap to the next row on smaller screens */
 	}
 
 	/* Item styles */
@@ -300,7 +311,6 @@
 		padding: 20px;
 		border-radius: 5px;
 		box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-		flex: 1;
 		margin: 0 10px;
 		transition: transform 0.3s ease; /* Add a smooth transition */
 		max-width: calc(50% - 20px); /* Limit each item to half of the container's width */
@@ -332,16 +342,6 @@
 		background-color: #cdbd06;
 	}
 
-	.buttons button:nth-child(2) {
-			background-color: #eae9e9;
-
-		}
-
-		.buttons button:nth-child(2):hover {
-			background-color: #b3b2b2;		
-
-	}
-
 	/* Input styles */
 	.input-field {
 		max-width: 100%; /* Make input fields take up full width on smaller screens */
@@ -357,10 +357,6 @@
 		gap: 10px;
 		justify-content: center;
 	}
-
-	
-
-	
 
 	.notifications {
 		display: none;

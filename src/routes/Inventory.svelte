@@ -8,7 +8,8 @@
 		mushroom1 = 0,
 		fire1 = 0,
 		fig1 = 0,
-		pill1 = 0;
+		pill1 = 0,
+		iron1 = 0;
 
 	inventory1.subscribe((value) => {
 		inventory11 = value;
@@ -41,6 +42,10 @@
 				if (item.asset_id === 8) {
 					pill1 = parseInt(item.quantity);
 				}
+
+				if (item.asset_id === 9) {
+					iron1 = parseInt(item.quantity);
+				}
 			});
 		} catch (error) {console.log(error.message)}
 	});
@@ -48,38 +53,43 @@
 </script>
 
 <div class="container">
-	<div class="inventory mymonke">
-		<div class="item">
-			<img src="/wood.png" alt="Wood" style="width:30px" /> <span>{wood1}</span>
+		<div class="left">
+			<div class="item">
+				<img src="/wood.png" alt="Wood" style="width:30px" /> <span>{wood1}</span>
+			</div>
+			<div class="item">
+				<img src="/rock.png" alt="rock" style="width:30px" /> <span>{rock1}</span>
+			</div>
+			<div class="item">
+				<img src="/water.png" alt="water" style="width:30px" /> <span>{water1}</span>
+			</div>
+			<div class="item">
+				<img src="/mushroom.png" alt="mushroom" style="width:30px" /> <span>{mushroom1}</span>
+			</div>
 		</div>
-		<div class="item">
-			<img src="/rock.png" alt="rock" style="width:30px" /> <span>{rock1}</span>
-		</div>
-		<div class="item">
-			<img src="/water.png" alt="water" style="width:30px" /> <span>{water1}</span>
-		</div>
-		<div class="item">
-			<img src="/mushroom.png" alt="mushroom" style="width:30px" /> <span>{mushroom1}</span>
-		</div>
-		<div class="item">
-			<img src="/fire.png" alt="fire" style="width:30px" /> <span>{fire1}</span>
-		</div>
-		<div class="item"><img src="/fig.png" alt="fig" style="width:30px" /> <span>{fig1}</span></div>
-		<div class="item">
-			<img src="/pill.png" alt="pill" style="width:30px" /> <span>{pill1}</span>
+		
+
+		<div class="right">
+			<div class="item">
+				<img src="/fire.png" alt="fire" style="width:30px" /> <span>{fire1}</span>
+			</div>
+			<div class="item"><img src="/fig.png" alt="fig" style="width:30px" /> <span>{fig1}</span></div>
+			<div class="item">
+				<img src="/pill.png" alt="pill" style="width:30px" /> <span>{pill1}</span>
+			</div>
+			<div class="item">
+				<img src="/iron.png" alt="iron" style="width:30px" /> <span>{iron1}</span>
+			</div>
 		</div>
 	</div>
-</div>
 
 <style>
 	.container {
 		display: flex;
 		width: max-content;
-	}
-
-	.inventory {
 		background-color: #f0f0f0;
 		display: flex;
+		flex-wrap: wrap;
 		padding: 20px;
 		border-radius: 8px;
 		margin: 20px;
@@ -97,14 +107,8 @@
 		/* Media query for responsiveness */
 
 		.container {
-			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-		}
-
-		.inventory {
-			margin: 10px; /* Adjust margin for smaller screens */
-			flex-wrap: wrap;
 		}
 	}
 </style>
