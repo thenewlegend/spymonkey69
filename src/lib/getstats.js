@@ -25,20 +25,16 @@ export const katana_visible = writable('');
 export const shiv_visible = writable('');
 export const axe_visible = writable('');
 
-
-
-
 export async function fetchEquipmentAssets(accountName) {
-    const response = await client.v1.chain.get_table_rows({
-        code: CONTRACT_NAME,
-        scope: accountName,
-        table: 'equipment',
-        limit: 100
-    });
+	const response = await client.v1.chain.get_table_rows({
+		code: CONTRACT_NAME,
+		scope: accountName,
+		table: 'equipment',
+		limit: 100
+	});
 
-    return response.rows;
-};
-
+	return response.rows;
+}
 
 export async function fetchMonkeyDetails(accountName) {
 	const response = await client.v1.chain.get_table_rows({

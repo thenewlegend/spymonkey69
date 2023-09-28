@@ -1,8 +1,7 @@
 <script>
 	import { inventory1 } from '$lib/getstats';
 
-	let inventory11,
-		wood1 = 0,
+	let wood1 = 0,
 		rock1 = 0,
 		water1 = 0,
 		mushroom1 = 0,
@@ -12,9 +11,8 @@
 		iron1 = 0;
 
 	inventory1.subscribe((value) => {
-		inventory11 = value;
 		try {
-			inventory11.forEach((item) => {
+			value.forEach((item) => {
 				if (item.asset_id === 2) {
 					wood1 = parseInt(item.quantity);
 				}
@@ -47,52 +45,48 @@
 					iron1 = parseInt(item.quantity);
 				}
 			});
-		} catch (error) {console.log(error.message)}
+		} catch (error) {
+			console.log(error.message);
+		}
 	});
-
 </script>
 
 <div class="container">
-		<div class="left">
-			<div class="item">
-				<img src="/wood.png" alt="Wood" style="width:30px" /> <span>{wood1}</span>
-			</div>
-			<div class="item">
-				<img src="/rock.png" alt="rock" style="width:30px" /> <span>{rock1}</span>
-			</div>
-			<div class="item">
-				<img src="/water.png" alt="water" style="width:30px" /> <span>{water1}</span>
-			</div>
-			<div class="item">
-				<img src="/mushroom.png" alt="mushroom" style="width:30px" /> <span>{mushroom1}</span>
-			</div>
-		</div>
-		
-
-		<div class="right">
-			<div class="item">
-				<img src="/fire.png" alt="fire" style="width:30px" /> <span>{fire1}</span>
-			</div>
-			<div class="item"><img src="/fig.png" alt="fig" style="width:30px" /> <span>{fig1}</span></div>
-			<div class="item">
-				<img src="/pill.png" alt="pill" style="width:30px" /> <span>{pill1}</span>
-			</div>
-			<div class="item">
-				<img src="/iron.png" alt="iron" style="width:30px" /> <span>{iron1}</span>
-			</div>
-		</div>
+	<div class="item">
+		<img src="/wood.png" alt="Wood" style="width:30px" /> <span>{wood1}</span>
 	</div>
+	<div class="item">
+		<img src="/rock.png" alt="rock" style="width:30px" /> <span>{rock1}</span>
+	</div>
+	<div class="item">
+		<img src="/water.png" alt="water" style="width:30px" /> <span>{water1}</span>
+	</div>
+	<div class="item">
+		<img src="/mushroom.png" alt="mushroom" style="width:30px" /> <span>{mushroom1}</span>
+	</div>
+	<div class="item">
+		<img src="/fire.png" alt="fire" style="width:30px" /> <span>{fire1}</span>
+	</div>
+	<div class="item"><img src="/fig.png" alt="fig" style="width:30px" /> <span>{fig1}</span></div>
+	<div class="item">
+		<img src="/pill.png" alt="pill" style="width:30px" /> <span>{pill1}</span>
+	</div>
+	<div class="item">
+		<img src="/iron.png" alt="iron" style="width:30px" /> <span>{iron1}</span>
+	</div>
+</div>
 
 <style>
 	.container {
 		display: flex;
-		width: max-content;
-		background-color: #f0f0f0;
-		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 80%;
 		flex-wrap: wrap;
+		background-color: #f0f0f0;
 		padding: 20px;
 		border-radius: 8px;
-		margin: 20px;
+		margin: 30px;
 		text-align: center;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	}
@@ -107,8 +101,7 @@
 		/* Media query for responsiveness */
 
 		.container {
-			align-items: center;
-			justify-content: center;
+			margin: 20px;
 		}
 	}
 </style>

@@ -22,7 +22,6 @@
 		equipment1,
 		equipped1,
 		fetchEquipmentAssets
-
 	} from '$lib/getstats';
 
 	// For store 1
@@ -125,7 +124,7 @@
 				total_fights1.set(monke1.total_fights);
 				losing_streak1.set(monke1.losing_streak);
 				xp1.set(monke1.xp);
-				equipped1.set(monke1.equip_used)
+				equipped1.set(monke1.equip_used);
 
 				if (monke1.losing_streak !== 0) {
 					fight1.set('NOT FIGHTING');
@@ -141,7 +140,6 @@
 				localStorage.setItem('myMonke', myMonkeFormatted);
 
 				FetchedNotify.click();
-
 			} catch (error) {
 				if (error.message.includes('monke1')) {
 					monke1Notify.click();
@@ -175,45 +173,64 @@
 			losing_streak1.set(0);
 			xp1.set(0);
 			inventory1.set([]);
-			equipment1.set([]);
-			equipped1.set([]);
-
+			const nullArmoryData = [
+				{ id: 1, quantity: '0.00 EQP', crafting_details: { first: ' ', value: '0.00 EQP' } },
+				{ id: 2, quantity: '0.00 EQP', crafting_details: { first: ' ', value: '0.00 EQP' } },
+				{ id: 3, quantity: '0.00 EQP', crafting_details: { first: ' ', value: '0.00 EQP' } },
+				{ id: 4, quantity: '0.00 EQP', crafting_details: { first: ' ', value: '0.00 EQP' } },
+				{ id: 5, quantity: '0.00 EQP', crafting_details: { first: ' ', value: '0.00 EQP' } },
+				{ id: 6, quantity: '0.00 EQP', crafting_details: { first: ' ', value: '0.00 EQP' } }
+			];
+			const nullEquippedData = [
+				{ id: 1, lifespan: '0 EQP' },
+				{ id: 2, lifespan: '0 EQP' },
+				{ id: 3, lifespan: '0 EQP' },
+				{ id: 4, lifespan: '0 EQP' },
+				{ id: 5, lifespan: '0 EQP' },
+				{ id: 6, lifespan: '0 EQP' }
+			];
+			equipment1.set(nullArmoryData);
+			equipped1.set(nullEquippedData);
 		} catch (error) {
 			console.error('An error occurred while clearing data: ', error.message);
 		}
 	}
 
 	function selectAllText() {
-    const input = document.getElementById('myMonke');
-    input.select();
-  }
+		const input = document.getElementById('myMonke');
+		input.select();
+	}
 </script>
 
 <div class="top">
 	<div class="top-item top-left">
-
 		<div class="input-container">
 			<div class="input">
 				<label for="myMonke" class="input-label">Monke</label>
-				<input id="myMonke" on:focus={selectAllText} class="input-field" type="text" bind:value={monkeName1} required /><br />
+				<input
+					id="myMonke"
+					on:focus={selectAllText}
+					class="input-field"
+					type="text"
+					bind:value={monkeName1}
+					required
+				/><br />
 			</div>
-			
+
 			<div class="buttons top-b">
 				<button on:click={displayData}>SPY</button>
 			</div>
-
 		</div>
 
 		<div class="span-container" style="overflow-wrap: break-word;">
 			<span>{monkey11}</span><br />
-            <span>{status11}</span><br />
+			<span>{status11}</span><br />
 			<span>{banana11} in game</span><br />
 			<span>{stash11} in account</span><br />
 			<span style="font-family: monospace; font-size:12px">{fight11}</span><br />
-        </div>
+		</div>
 
 		<Kd />
-
 	</div>
 </div>
 
@@ -317,7 +334,6 @@
 		box-sizing: border-box; /* Include padding and border in the max-width calculation */
 	}
 
-	
 	/* Button style */
 	button {
 		padding: 10px 20px;
@@ -329,7 +345,7 @@
 		transition: background-color 0.3s ease; /* Add a smooth transition */
 	}
 
-	.buttons{
+	.buttons {
 		margin: 0.3rem;
 	}
 
@@ -337,7 +353,7 @@
 	button {
 		background-color: #ffeb09;
 	}
-	
+
 	button:hover {
 		background-color: #cdbd06;
 	}
@@ -384,17 +400,17 @@
 			flex-direction: column; /* Stack items vertically on smaller screens */
 		}
 
-		.top-left{
-		max-width: 300px;
-		justify-content: center;
-		align-items: center;
-		width: 80%;
-		margin-top: 20px;
-		flex-wrap: wrap;
-	}
+		.top-left {
+			max-width: 300px;
+			justify-content: center;
+			align-items: center;
+			width: 80%;
+			margin-top: 20px;
+			flex-wrap: wrap;
+		}
 
-	.span-container{
-		max-width: 300px;
-	}
+		.span-container {
+			max-width: 300px;
+		}
 	}
 </style>

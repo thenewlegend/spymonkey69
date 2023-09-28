@@ -31,10 +31,11 @@
 		updateKD1();
 	});
 </script>
-		<p>KD : {kd11}</p>
+
+<p>KD : {kd11}</p>
 
 <style>
-	p{
+	p {
 		margin: 0;
 	}
 </style>

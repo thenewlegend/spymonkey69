@@ -1,22 +1,28 @@
 <script>
-	import { equipped1,stick_visible,bat_visible,nails_visible,katana_visible,shiv_visible,axe_visible } from '$lib/getstats';
+	import {
+		equipped1,
+		stick_visible,
+		bat_visible,
+		nails_visible,
+		katana_visible,
+		shiv_visible,
+		axe_visible
+	} from '$lib/getstats';
 
-	let equipped11,
-		stick1 = 0,
+	let stick1 = 0,
 		bat1 = 0,
-        bat_nail1 = 0,
-        katana1 = 0,
-        shiv1 = 0,
-        axe1 = 0,
+		bat_nail1 = 0,
+		katana1 = 0,
+		shiv1 = 0,
+		axe1 = 0,
 		visible1 = '',
 		visible2 = '',
 		visible3 = '',
 		visible4 = '',
-		visible5  = '',
+		visible5 = '',
 		visible6 = '';
 
-
-		stick_visible.subscribe((value) => {
+	stick_visible.subscribe((value) => {
 		visible1 = value;
 	});
 
@@ -41,97 +47,145 @@
 	});
 
 	equipped1.subscribe((value) => {
-		equipped11 = value;
 		try {
-			equipped11.forEach((item) => {
+			value.forEach((item) => {
 				if (item.id === 1) {
 					stick1 = parseFloat(item.lifespan);
-					if(stick1>0){
+					if (stick1 > 0) {
 						visible1 = 'visible';
+					} else {
+						visible1 = '';
 					}
 				}
 
-                if (item.id === 2) {
+				if (item.id === 2) {
 					bat1 = parseFloat(item.lifespan);
-					if(bat1>0){
+					if (bat1 > 0) {
 						visible2 = 'visible';
+					} else {
+						visible2 = '';
 					}
 				}
 
-                if (item.id === 3) {
+				if (item.id === 3) {
 					bat_nail1 = parseFloat(item.lifespan);
-					if(bat_nail1>0){
+					if (bat_nail1 > 0) {
 						visible3 = 'visible';
+					} else {
+						visible3 = '';
 					}
 				}
 
-                if (item.id === 4) {
+				if (item.id === 4) {
 					katana1 = parseFloat(item.lifespan);
-					if(katana1>0){
+					if (katana1 > 0) {
 						visible4 = 'visible';
+					} else {
+						visible4 = '';
 					}
-
 				}
 
-                if (item.id === 5) {
-                    shiv1 = parseFloat(item.lifespan);
-					if(shiv1>0){
+				if (item.id === 5) {
+					shiv1 = parseFloat(item.lifespan);
+					if (shiv1 > 0) {
 						visible5 = 'visible';
+					} else {
+						visible5 = '';
 					}
-                }
-                
-                if (item.id === 6) {
+				}
+
+				if (item.id === 6) {
 					axe1 = parseFloat(item.lifespan);
-					if(axe1>0){
-						visible = 'visible';
+					if (axe1 > 0) {
+						visible6 = 'visible';
+					} else {
+						visible6 = '';
 					}
 				}
 			});
-		} catch (error) {console.log(error.message)}
+		} catch (error) {
+			console.log(error.message);
+		}
 	});
-
 </script>
 
-<div class="container">
-	<div class="inventory mymonke">
-		
-		<!-- PLACEHOLDERS -->
-		<div id="placeholder{visible1}{visible2}{visible3}{visible4}{visible5}{visible6}" class="item flag" >
-			<img src="/placeholder.jpg" alt="placeholder" style="width:30px" /> <p></p>
-		</div>
+<div class="label">
+	<label>Equipped</label>
+	<div class="container">
+		<div class="equipped mymonke">
+			<!-- PLACEHOLDERS -->
+			<div
+				id="placeholder{visible1}{visible2}{visible3}{visible4}{visible5}{visible6}"
+				class="item flag"
+			>
+				<img src="/placeholder.jpg" alt="placeholder" style="width:30px" />
+				<p />
+			</div>
 
-		<div id="placeholder{visible1}{visible2}{visible3}{visible4}{visible5}{visible6}" class="item flag" >
-			<img src="/placeholder.jpg" alt="placeholder" style="width:30px" /> <p></p>
+			<div
+				id="placeholder{visible1}{visible2}{visible3}{visible4}{visible5}{visible6}"
+				class="item flag"
+			>
+				<img src="/placeholder.jpg" alt="placeholder" style="width:30px" />
+				<p />
+			</div>
+
+			<!-- EQUIPPED -->
+			<div class="item {visible1}">
+				<img src="/stick.png" alt="Stick" style="width:30px" />
+				<p>{stick1}</p>
+			</div>
+			<div class="item {visible2}">
+				<img src="/bat.png" alt="Bat" style="width:30px" />
+				<p>{bat1}</p>
+			</div>
+			<div class="item {visible3}">
+				<img src="/bat_nails.png" alt="Bat with Nails" style="width:30px" />
+				<p>{bat_nail1}</p>
+			</div>
+			<div class="item {visible4}">
+				<img src="/katana.png" alt="Katana" style="width:30px" />
+				<p>{katana1}</p>
+			</div>
+			<div class="item {visible5}">
+				<img class="" src="/shiv.png" alt="Shiv" style="width:30px" />
+				<p>{shiv1}</p>
+			</div>
+			<div class="item {visible6}">
+				<img src="/axe.png" alt="Axe" style="width:30px" />
+				<p>{axe1}</p>
+			</div>
 		</div>
-		
-		<!-- EQUIPPED -->
-		<div class="item {visible1}">
-			<img src="/stick.png" alt="Stick" style="width:30px" /> <p>{stick1}</p>
-		</div>
-		<div class="item {visible2}">
-			<img src="/bat.png" alt="Bat" style="width:30px" /> <p>{bat1}</p>
-		</div>
-		<div class="item {visible3}">
-			<img src="/bat_nails.png" alt="Bat with Nails" style="width:30px" /> <p>{bat_nail1}</p>
-		</div>
-		<div class="item {visible4}">
-			<img src="/katana.png" alt="Katana" style="width:30px" /> <p>{katana1}</p>
-		</div>
-		<div class="item {visible5}">
-			<img class="" src="/shiv.png" alt="Shiv" style="width:30px" /> <p>{shiv1}</p>
-		</div>
-		<div class="item {visible6}"><img src="/axe.png" alt="Axe" style="width:30px" /> <p>{axe1}</p></div>
 	</div>
 </div>
 
 <style>
-	.container {
-		display: flex;
-		width: max-content;
+	label {
+		color: rgb(255, 255, 255);
+		font-size: 11px;
+		background-color: transparent; /* Match the background color of  container */
+		padding: 0 5px; /* Add some padding for better styling */
+		font-family: monospace;
 	}
 
-	.inventory {
-		background-color: #f0f0f0;
+	.label {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: start;
+		margin-top: 10px;
+	}
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 80%;
+		flex-wrap: wrap;
+	}
+
+	.equipped {
+		background-color: #ffffff;
 		display: flex;
 		padding: 20px;
 		border-radius: 8px;
@@ -150,27 +204,21 @@
 	@media (max-width: 1200px) {
 		/* Media query for responsiveness */
 
-		.container {
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.inventory {
+		.equipped {
 			margin: 10px; /* Adjust margin for smaller screens */
 			flex-wrap: wrap;
 		}
 	}
 
-	.visible{
-		display:block;
+	.visible {
+		display: block;
 	}
 
-	#placeholder{
-		display:block;
-		}
-	
-	.flag{
+	#placeholder {
+		display: block;
+	}
+
+	.flag {
 		display: none;
 	}
 </style>

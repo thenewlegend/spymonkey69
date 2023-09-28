@@ -1,53 +1,65 @@
 <script>
 	import Main from './Main.svelte';
 	import Inventory from './Inventory.svelte';
-	import Spy from './Spy.svelte'
+	import Spy from './Spy.svelte';
 	import Monkey from './Monkey.svelte';
 	import Armory from './Armory.svelte';
 	import Equipped from './Equipped.svelte';
+	import { notifyAction } from 'svelte-legos';
 
 	let audio = null;
-  let isPlaying = false;
+	let isPlaying = false;
 
-  function toggleAudio() {
-    if (audio) {
-      if (isPlaying) {
-        audio.pause();
-        isPlaying = false;
-      } else {
-        audio.play()
-          .then(() => {
-            isPlaying = true;
-          })
-          .catch((error) => {
-            console.error('Audio playback error:', error);
-          });
-      }
-    }
-  }
-
+	function toggleAudio() {
+		if (audio) {
+			if (isPlaying) {
+				audio.pause();
+				isPlaying = false;
+			} else {
+				audio
+					.play()
+					.then(() => {
+						const volumeUp = document.getElementById('playing');
+						volumeUp.click();
+						isPlaying = true;
+					})
+					.catch((error) => {
+						console.error('Audio playback error:', error);
+					});
+			}
+		}
+	}
 </script>
 
-<audio bind:this={audio} src="banana.mp3"></audio>
-<button style="background-color:transparent; border: none; outline: none; background: none; loop" on:click={toggleAudio}>{isPlaying ? "⏸️" : "▶️"}</button>
+<audio bind:this={audio} src="banana.mp3" />
+<button id="play" on:click={toggleAudio}>{isPlaying ? '⏸️' : '▶️'}</button>
 
-
+<button
+	id="playing"
+	class="notifications"
+	use:notifyAction={{
+		title: '🐵 ❤️🍌',
+		description: 'Turn up the volume',
+		type: 'success',
+		duration: 5000
+	}}
+	style="display: none;"
+/>
 
 <div class="container">
 	<div class="spy">
-		<Spy/>
+		<Spy />
 	</div>
 
 	<div class="main-items">
-		<img id="main-logo" src="/spymonke.png" alt="">
+		<img id="main-logo" src="/spymonke.png" alt="" />
 		<Main />
-		
-		<div class="sec" style="display: flex; align-items:center; justify-content:center" >
+
+		<div class="sec" style="display: flex; align-items:flex-start; justify-content:space-around">
 			<Armory />
 			<Inventory />
 			<Equipped />
 		</div>
-		
 	</div>
 
 	<div class="monkey">
@@ -57,14 +69,15 @@
 
 <style>
 	.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
-	.spy, .monkey {
-		flex: 0 0 auto; 
-		margin:0 8rem;
+	.spy,
+	.monkey {
+		flex: 0 0 auto;
+		margin: 0 8rem;
 	}
 
 	.main-items {
@@ -75,33 +88,42 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-top: 50px;
 	}
 
-	#main-logo{
-		width:25%;
+	#main-logo {
+		width: 25%;
 	}
 
-	@media (max-width:1200px) {
-		#main-logo{
-		width:35%;
+	#play {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-color: transparent;
+		border: none;
+		z-index: 1;
+		outline: none;
 	}
 
-	.container {
-    display: flex;
-	flex-direction: column;
-    justify-content: center;
-    align-items: center;
-	}
+	@media (max-width: 1200px) {
+		#main-logo {
+			width: 35%;
+		}
 
-	.spy, .monkey {
-		flex: 0 0 auto; 
-		margin:0 8rem;
-	}
+		.container {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
 
-	.main-items {
-		flex: 1; /* Allow the center content to grow and take available space */
+		.spy,
+		.monkey {
+			flex: 0 0 auto;
+			margin: 0 8rem;
+		}
+
+		.main-items {
+			flex: 1; /* Allow the center content to grow and take available space */
+		}
 	}
-}
 </style>
-	
