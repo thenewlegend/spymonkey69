@@ -100,7 +100,7 @@
 		const MyMonke = document.getElementById('myMonke');
 
 		//Stripping spaces
-		const myMonkeFormatted = monkeName1.replace(/\s/g, '');
+		const myMonkeFormatted = monkeName1.replace(/\s/g, '').toLowerCase();
 		MyMonke.value = myMonkeFormatted;
 
 		//Check if fields are empty
