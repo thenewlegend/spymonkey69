@@ -110,7 +110,7 @@
 </script>
 
 <div class="label">
-	<label>Equipped</label>
+	<span>Equipped</span>
 	<div class="container">
 		<div class="equipped mymonke">
 			<!-- PLACEHOLDERS -->
@@ -160,20 +160,23 @@
 </div>
 
 <style>
-	label {
-		color: rgb(255, 255, 255);
+	span {
+		color: rgb(0, 0, 0);
 		font-size: 11px;
 		background-color: transparent; /* Match the background color of  container */
 		padding: 0 5px; /* Add some padding for better styling */
 		font-family: monospace;
+		margin: 0;
 	}
 
 	.label {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: start;
+		align-items: center;
 		margin-top: 10px;
+		padding: 0;
+
 	}
 
 	.container {
@@ -187,9 +190,12 @@
 	.equipped {
 		background-color: #ffffff;
 		display: flex;
-		padding: 20px;
+		justify-content: center;
+		align-items: center;
+		padding: 0;
 		border-radius: 8px;
-		margin: 20px;
+		margin: 0x;
+		margin-top: 5px;
 		text-align: center;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	}
@@ -201,22 +207,26 @@
 		display: none;
 	}
 
+	.item >p{
+		margin: 0;
+		padding-top: 5px;
+	}
+
 	@media (max-width: 1200px) {
 		/* Media query for responsiveness */
 
 		.equipped {
 			margin: 10px; /* Adjust margin for smaller screens */
-			flex-wrap: wrap;
 		}
 	}
 
-	.visible {
-		display: block;
-	}
+		.visible {
+			display: block;
+		}
 
-	#placeholder {
-		display: block;
-	}
+		#placeholder {
+			display: block;
+		}
 
 	.flag {
 		display: none;

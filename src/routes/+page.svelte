@@ -4,7 +4,6 @@
 	import Spy from './Spy.svelte';
 	import Monkey from './Monkey.svelte';
 	import Armory from './Armory.svelte';
-	import Equipped from './Equipped.svelte';
 	import { notifyAction } from 'svelte-legos';
 
 	let audio = null;
@@ -55,11 +54,12 @@
 		<img id="main-logo" src="/spymonke.png" alt="" />
 		<Main />
 
-		<div class="sec" style="display: flex; align-items:flex-start; justify-content:space-around">
+		<div class="split">
 			<Armory />
 			<Inventory />
-			<Equipped />
 		</div>
+		
+		
 	</div>
 
 	<div class="monkey">
@@ -68,6 +68,13 @@
 </div>
 
 <style>
+	.split{
+		display: flex; 
+		align-items:flex-start; 
+		justify-content:space-around;
+	}
+
+
 	.container {
 		display: flex;
 		justify-content: center;
@@ -98,6 +105,9 @@
 		position: fixed;
 		top: 0;
 		left: 0;
+		margin-top: 10px;
+		font-size: medium;
+		margin-left: 10px;
 		background-color: transparent;
 		border: none;
 		z-index: 1;
@@ -125,5 +135,9 @@
 		.main-items {
 			flex: 1; /* Allow the center content to grow and take available space */
 		}
+
+		.split{
+		display: flex; flex-direction: column; align-items:center; justify-content:flex-start;
+	}
 	}
 </style>
