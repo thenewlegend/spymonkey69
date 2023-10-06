@@ -176,7 +176,6 @@
 		align-items: center;
 		margin-top: 10px;
 		padding: 0;
-
 	}
 
 	.container {
@@ -207,7 +206,7 @@
 		display: none;
 	}
 
-	.item >p{
+	.item > p {
 		margin: 0;
 		padding-top: 5px;
 	}
@@ -220,13 +219,13 @@
 		}
 	}
 
-		.visible {
-			display: block;
-		}
+	.visible {
+		display: block;
+	}
 
-		#placeholder {
-			display: block;
-		}
+	#placeholder {
+		display: block;
+	}
 
 	.flag {
 		display: none;

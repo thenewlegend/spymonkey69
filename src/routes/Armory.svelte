@@ -88,14 +88,12 @@
 		align-items: center;
 		margin-top: 10px;
 		padding: 15px;
-
 	}
 
 	.container {
 		display: flex;
 		width: 90%;
 		flex-wrap: wrap;
-		
 	}
 
 	.armory {
@@ -126,6 +124,7 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			width: 80%;
 		}
 
 		.armory {

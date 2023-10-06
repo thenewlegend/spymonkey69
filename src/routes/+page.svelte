@@ -58,8 +58,6 @@
 			<Armory />
 			<Inventory />
 		</div>
-		
-		
 	</div>
 
 	<div class="monkey">
@@ -68,12 +66,11 @@
 </div>
 
 <style>
-	.split{
-		display: flex; 
-		align-items:flex-start; 
-		justify-content:space-around;
+	.split {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-around;
 	}
-
 
 	.container {
 		display: flex;
@@ -136,8 +133,11 @@
 			flex: 1; /* Allow the center content to grow and take available space */
 		}
 
-		.split{
-		display: flex; flex-direction: column; align-items:center; justify-content:flex-start;
-	}
+		.split {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+		}
 	}
 </style>

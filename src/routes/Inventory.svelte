@@ -53,7 +53,7 @@
 
 <div class="label">
 	<span class="span">Inventory</span>
-	
+
 	<div class="container">
 		<div class="item">
 			<img src="/wood.png" alt="Wood" style="width:30px" /> <span>{wood1}</span>
@@ -79,7 +79,6 @@
 		</div>
 	</div>
 </div>
-
 
 <style>
 	.span {
@@ -124,6 +123,7 @@
 
 		.container {
 			margin: 20px;
+			width: 80%;
 		}
 	}
 </style>
