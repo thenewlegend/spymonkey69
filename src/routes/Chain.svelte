@@ -24,6 +24,10 @@
                 loading = true;
                 window.location.href = `${currentBaseUrl}/wax`;
                 break;
+            case '3':
+                loading = true;
+                window.location.href = `${currentBaseUrl}/evm`;
+                break;
             default:
                     const NC = document.getElementById('no-chain');
 					NC.click();
@@ -38,8 +42,7 @@
     <option value='0'>EOS</option>
     <option value='1'>TELOS</option>
     <option value='2'>WAX</option>
-    <option value='3'disabled >TELOS EVM</option>
-    <option value='4'disabled>BSC</option>
+    <option value='3' >tEVM + BNB</option>
 </select>
 
 <button on:click={goToChain} use:loadingAction={loading} >Deploy Spy</button>
@@ -92,6 +95,7 @@
         color: rgb(198, 160, 7);
         text-shadow: none;
         font-weight: 550;
+        width: 10em;
     }
 
 
