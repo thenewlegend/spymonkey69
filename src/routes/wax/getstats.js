@@ -1,6 +1,14 @@
-import client from '$lib/APIClient';
-import { CONTRACT_NAME, TOKEN_CONTRACT_NAME } from '$lib/config';
+// import client from '$lib/APIClient';
+import { APIClient } from '@wharfkit/antelope';
 import { writable } from 'svelte/store';
+
+let client = new APIClient({ url: 'https://wax.greymass.com:443' });
+const CONTRACT_NAME				=	'feedurmonkey';
+const TOKEN_CONTRACT_NAME		= 	'banana.moon';
+export const EXPLORER_URL = new URL('https://waxblock.io/');
+export const TG_URL = new URL('https://t.me/feedyourmonkey');
+export const TWITTER_URL = new URL('https://twitter.com/feedurmonkey');
+
 
 export const banana1 = writable('0.0000 BANANA');
 export const stash1 = writable('0.0000 BANANA');
@@ -25,6 +33,7 @@ export const katana_visible = writable('');
 export const shiv_visible = writable('');
 export const axe_visible = writable('');
 
+ 
 export async function fetchEquipmentAssets(accountName) {
 	const response = await client.v1.chain.get_table_rows({
 		code: CONTRACT_NAME,

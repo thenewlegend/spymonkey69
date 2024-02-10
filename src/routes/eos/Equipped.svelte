@@ -7,7 +7,7 @@
 		katana_visible,
 		shiv_visible,
 		axe_visible
-	} from '$lib/getstats';
+	} from './getstats';
 
 	let stick1 = 0,
 		bat1 = 0,

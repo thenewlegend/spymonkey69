@@ -1,5 +1,5 @@
 <script>
-	import { inventory1 } from '$lib/getstats';
+	import { inventory1 } from './getstats';
 
 	let wood1 = 0,
 		rock1 = 0,

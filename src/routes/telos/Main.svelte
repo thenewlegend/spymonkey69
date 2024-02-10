@@ -22,7 +22,7 @@
 		equipment1,
 		equipped1,
 		fetchEquipmentAssets
-	} from '$lib/getstats';
+	} from './getstats';
 
 	// For store 1
 	let monkey11,
@@ -91,6 +91,7 @@
 	// Function to display data with the loaded parameters
 	async function displayData() {
 		clearData();
+		
 		//Notify Element
 		const monke1Notify = document.getElementById('monke1');
 		const noEOSNotify = document.getElementById('noEOS');
@@ -239,23 +240,13 @@
 		id="monke1"
 		class="notifications"
 		use:notifyAction={{
-			title: ' Monke name is wrong',
-			description: 'Double check the name dummy.',
+			title: ' Monke name is wrong dummy',
+			description: 'Double check the name and chain. All monkeys are not on all chains.',
 			type: 'error',
 			duration: 3000
 		}}
 	/>
 
-	<button
-		id="monke2"
-		class="notifications"
-		use:notifyAction={{
-			title: 'Opponent Monke name is wrong',
-			description: 'Double check the name dummy.',
-			type: 'error',
-			duration: 3000
-		}}
-	/>
 
 	<button
 		id="noEOS"
@@ -272,8 +263,8 @@
 		id="unknown"
 		class="notifications"
 		use:notifyAction={{
-			title: 'Probably Name Error',
-			description: 'Check monke names again ser !',
+			title: 'Unexpected fucking error occured!',
+			description: 'Are you using the right chain ? All monkeys are not on all chains. If yes, then node is down. Probably.',
 			type: 'error',
 			duration: 3000
 		}}
@@ -286,7 +277,7 @@
 			title: 'Data Acquired',
 			description: 'You are welcome.',
 			type: 'success',
-			duration: 3000
+			duration: 1500
 		}}
 	/>
 

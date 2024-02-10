@@ -18,7 +18,8 @@
 		".svelte-kit": true,
 		".gitignore": true,
 		".vscode": true,
-		"node_modules": true
+		"node_modules": true,
+		"package.json": true
 	},
 	"hide-files.files": [
 		".eslintignore",
@@ -33,6 +34,7 @@
 		".svelte-kit",
 		".gitignore",
 		".vscode",
-		"node_modules"
+		"node_modules",
+		"package.json"
 	]
 }

@@ -1,5 +1,5 @@
 <script>
-	import { equipment1 } from '$lib/getstats';
+	import { equipment1 } from './getstats';
 	import Equipped from './Equipped.svelte';
 
 	let equipment11,

@@ -1,5 +1,5 @@
 <script>
-	import { wins1, losses1 } from '$lib/getstats';
+	import { wins1, losses1 } from './getstats';
 	import { onMount, afterUpdate } from 'svelte';
 
 	let wins11, losses11, kd11;

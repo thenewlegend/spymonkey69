@@ -1,25 +1,14 @@
 <script>
-	 
+	import Main from './Main.svelte';
+	import Inventory from './Inventory.svelte';
 	import Spy from './Spy.svelte';
 	import Monkey from './Monkey.svelte';
-    import Chain from './Chain.svelte';
+	import Armory from './Armory.svelte';
 	import { notifyAction } from 'svelte-legos';
-	import { onMount } from 'svelte';
 
 	let audio = null;
 	let isPlaying = false;
-
-	function confirmBeforeUnload() {
-    return "Are you sure you want to leave? Your changes may not be saved.";
-  }
-
-  onMount(() => {
-    window.addEventListener('beforeunload', confirmBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', confirmBeforeUnload);
-    };
-  });
+	let selectedValue = '';
 
 	function toggleAudio() {
 		if (audio) {
@@ -40,12 +29,44 @@
 			}
 		}
 	}
+
+	function goToChain() {
+		if (typeof window !== 'undefined') {
+			// Get the current base URL
+			const currentBaseUrl = window.location.origin;
+
+			// Assuming you have a switch case for different values
+			switch (selectedValue) {
+				case '0':
+					window.location.href = `${currentBaseUrl}/eos`;
+					break;
+				case '1':
+					window.location.href = `${currentBaseUrl}/telos`;
+					break;
+				case '2':
+					window.location.href = `${currentBaseUrl}/wax`;
+					break;
+				default:
+				window.location.href = `${currentBaseUrl}`
+					break;
+			}
+		}
+	}
 </script>
 
 
 <audio bind:this={audio} src="banana.mp3" />
 <button id="play" on:click={toggleAudio}>{isPlaying ? '⏸️' : '▶️'}</button>
 
+<!-- <select bind:value={selectedValue} name="chain-select" id="chain" >
+	<option value='1' >TELOS</option>
+    <option on:click={goToChain} value='0'  >EOS</option>
+    <option on:click={goToChain} value='2' >WAX</option>
+	<option value='3'disabled >TELOS EVM</option>
+    <option value='4'disabled>BSC</option>
+</select> -->
+  
+<button id="chain" on:click={goToChain}>Return to HQ</button>
 
 <button
 	id="playing"
@@ -65,7 +86,12 @@
 
 	<div class="main-items">
 		<img id="main-logo" src="/spymonke.png" alt="" />
-		<Chain />
+		<Main />
+
+		<div class="split">
+			<Armory />
+			<Inventory />
+		</div>
 	</div>
 
 	<div class="monkey">
@@ -74,12 +100,16 @@
 </div>
 
 <style>
+	.split {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-around;
+	}
 
 	.container {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-top: 10%;
 	}
 
 	.spy,
@@ -96,12 +126,10 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
 	}
 
 	#main-logo {
 		width: 25%;
-		margin-bottom: 30px;
 	}
 
 	#play {
@@ -118,11 +146,37 @@
 		outline: none;
 	}
 
+	#chain {
+		position: relative;
+		top: 0;
+		left: 0;
+		margin: 20px 0 0 20px ;
+		color: #ffffff;
+		font-size: medium;
+		font-weight: 350;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		z-index: 1;
+		outline: none;
+		border: none;
+		padding: 8px;
+		border-radius: 1px;
+		text-shadow: 0 1px 0 #ffffff;
+		background-color: #000000;
+		border: 2px solid #ffffff;
+    	cursor: pointer;
+	}
+
+	#chain:hover {
+		transition: border-color 1s ease-in;
+		border: 2px solid #e5ae07;
+	}
+
+
+
 	/* MEDIA QUERIES */
 	@media (max-width: 1200px) {
 		#main-logo {
 			width: 35%;
-			margin-bottom: 15px;
 		}
 
 		.container {
@@ -130,7 +184,6 @@
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			margin-top: 15%;
 		}
 
 		.spy,
@@ -141,6 +194,13 @@
 
 		.main-items {
 			flex: 1; /* Allow the center content to grow and take available space */
+		}
+
+		.split {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
 		}
 	}
 </style>
